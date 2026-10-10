@@ -9,55 +9,16 @@
 // ============================================================
 window.PRODUCTS = [
   {
-    id: "shifter-basic",                 // 상품 고유 ID (영문/숫자/하이픈, 중복 금지)
-    name: "센터콘솔 시프터 (하이랜드, 주니퍼 Y / YL 용)",
-    subtitle: "3D 프린팅 · 기본형",
+    id: "shifter-2holes",                 // 상품 고유 ID (영문/숫자/하이픈, 중복 금지)
+    name: "센터콘솔 시프터 2구 (하이랜드, 주니퍼 Y / YL 용)",
+    subtitle: "3D 프린팅 · 하이랜드, 주니퍼 Y / YL 용",
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
-    price: 39000,                        // 기본 가격 (원)
+    price: 31000,                        // 기본 가격 (원)
     images: [],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
     description: "센터콘솔에 장착하는 3D 프린터 제작 시프터입니다. 심플한 디자인으로 주행 기어 조작이 한결 편해집니다.",
     details: [
-      "소재: PETG / ASA 중 선택",
+      "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
-      "제작 기간: 주문 확인 후 순차 제작"
-    ],
-    options: [
-      {
-        name: "옵션1 · 색상",
-        choices: [
-          { label: "블랙", add: 0 },
-          { label: "화이트", add: 0 },
-          { label: "그레이", add: 0 }
-        ]
-      },
-      {
-        name: "옵션2 · 소재",
-        choices: [
-          { label: "PETG", add: 0 },
-          { label: "ASA (내열/내후성)", add: 5000 }
-        ]
-      },
-      {
-        name: "옵션3 · 차종",
-        choices: [
-          { label: "모델 3", add: 0 },
-          { label: "모델 Y", add: 0 }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: "shifter-pro",
-    name: "센터콘솔 시프터 - 프로",
-    subtitle: "3D 프린팅 · 고급형",
-    badge: "BEST",
-    price: 49000,
-    images: [],
-    description: "표면 마감과 그립감을 개선한 고급형 시프터입니다.",
-    details: [
-      "소재: ASA",
-      "표면 마감 처리",
       "제작 기간: 주문 확인 후 순차 제작"
     ],
     options: [
@@ -69,10 +30,63 @@ window.PRODUCTS = [
         ]
       },
       {
-        name: "옵션2 · 마감",
+        name: "옵션2 · 시프터 색상",
         choices: [
-          { label: "무광", add: 0 },
-          { label: "샌딩 마감", add: 8000 }
+          { label: "반투명", add: 0 },
+          { label: "블랙", add: 0 },
+          { label: "레드", add: 0 }
+          
+        ]
+      },
+      {
+        name: "옵션3 · 버튼엣지 색상",
+        choices: [
+          { label: "반투명", add: 0 },
+          { label: "블랙", add: 0 },
+          { label: "화이트", add: 0 },
+          { label: "레드", add: 0 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "shifter-3holes",                 // 상품 고유 ID (영문/숫자/하이픈, 중복 금지)
+    name: "센터콘솔 시프터 3구 (하이랜드, 주니퍼 Y / YL 용)",
+    subtitle: "3D 프린팅 · 하이랜드, 주니퍼 Y / YL 용",
+    badge: "NEW",                        // 뱃지 (필요 없으면 "")
+    price: 32000,                        // 기본 가격 (원)
+    images: [],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
+    description: "센터콘솔에 장착하는 3D 프린터 제작 시프터입니다. 심플한 디자인으로 주행 기어 조작이 한결 편해집니다.",
+    details: [
+      "소재: PETG",
+      "제작 방식: 주문 후 3D 프린팅 제작",
+      "제작 기간: 주문 확인 후 순차 제작"
+    ],
+    options: [
+      {
+        name: "옵션1 · 색상",
+        choices: [
+          { label: "블랙", add: 0 },
+          { label: "화이트", add: 0 }
+        ]
+      },
+      {
+        name: "옵션2 · 시프터 색상",
+        choices: [
+          { label: "반투명", add: 0 },
+          { label: "블랙", add: 0 },
+          { label: "레드", add: 0 }
+          
+        ]
+      },
+      {
+        name: "옵션3 · 버튼엣지 색상",
+        choices: [
+          { label: "반투명", add: 0 },
+          { label: "블랙", add: 0 },
+          { label: "화이트", add: 0 },
+          { label: "레드", add: 0 }
         ]
       }
     ]
