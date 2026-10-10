@@ -15,7 +15,7 @@ window.PRODUCTS = [
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 31000,                        // 기본 가격 (원)
     images: ["Image/2hole.png","Image/LED_sample.png","Image/sample_W.png"],   // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
-    description: "센터콘솔에 장착하는 편리한 시프터! \n LED 별도 장착시 화려 엠비언트 효과!!",
+    description: "센터콘솔에 장착하는 편리한 시프터! \n LED 별도 장착시 화려 엠비언트 효과!! \n 시프터 와 버튼 2구로 구성되어있습니다.",
     details: [
       "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
@@ -57,7 +57,7 @@ window.PRODUCTS = [
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 32000,                        // 기본 가격 (원)
     images: ["Image/3hole.png","Image/LED_sample.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
-    description: "센터콘솔에 장착하는 3D 프린터 제작 시프터입니다. 심플한 디자인으로 주행 기어 조작이 한결 편해집니다.",
+    description: "센터콘솔에 장착하는 편리한 시프터! \n LED 별도 장착시 화려 엠비언트 효과!! \n 시프터 와 버튼 3구로 구성되어있습니다.",
     details: [
       "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
@@ -97,8 +97,8 @@ window.PRODUCTS = [
     subtitle: "콘솔시프터 구매자용",
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 2000,                        // 기본 가격 (원)
-    images: ["Image/3hole.png","Image/LED_sample.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
-    description: "센터콘솔에 장착하는 3D 프린터 제작 시프터입니다. 심플한 디자인으로 주행 기어 조작이 한결 편해집니다.",
+    images: ["Image/Shifter_T.png","Image/Shifter_B.png","Image/Shifter_R.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
+    description: "시프터의 색상을 변경하고 싶으실때 구매하세요",
     details: [
       "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
@@ -122,8 +122,8 @@ window.PRODUCTS = [
     subtitle: "콘솔시프터 구매자용",
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 1000,                        // 기본 가격 (원)
-    images: ["Image/3hole.png","Image/LED_sample.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
-    description: "센터콘솔에 장착하는 3D 프린터 제작 시프터입니다. 심플한 디자인으로 주행 기어 조작이 한결 편해집니다.",
+    images: ["Image/Edge_T.png","Image/Edge_B.png","Image/Edge_W.png","Image/Edge_R.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
+    description: "버튼엣지의 색상을 변경하고 싶으실때 구매하세요",
     details: [
       "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
