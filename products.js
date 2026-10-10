@@ -25,26 +25,26 @@ window.PRODUCTS = [
       {
         name: "옵션1 · 색상",
         choices: [
-          { label: "블랙", add: 0, image: "Image/hole2_body_B.jpg"},
-          { label: "화이트", add: 0, image: "Image/hole2_body_W.jpg" }
+          { label: "블랙", add: 0, image: "Image/hole2_body_B.png"},
+          { label: "화이트", add: 0, image: "Image/hole2_body_W.png" }
         ]
       },
       {
         name: "옵션2 · 시프터 색상",
         choices: [
-          { label: "반투명", add: 0, image: "Image/Shifter_T.jpg"},
-          { label: "블랙", add: 0, image: "Image/Shifter_B.jpg" },
-          { label: "레드", add: 0, image: "Image/Shifter_W.jpg" }
+          { label: "반투명", add: 0, image: "Image/Shifter_T.png"},
+          { label: "블랙", add: 0, image: "Image/Shifter_B.png" },
+          { label: "레드", add: 0, image: "Image/Shifter_W.png" }
           
         ]
       },
       {
         name: "옵션3 · 버튼엣지 색상",
         choices: [
-          { label: "반투명", add: 0, image: "Image/Edge_T.jpg" },
-          { label: "블랙", add: 0, image: "Image/Edge_B.jpg" },
-          { label: "화이트", add: 0, image: "Image/Edge_W.jpg" },
-          { label: "레드", add: 0, image: "Image/Edge_R.jpg" }
+          { label: "반투명", add: 0, image: "Image/Edge_T.png" },
+          { label: "블랙", add: 0, image: "Image/Edge_B.png" },
+          { label: "화이트", add: 0, image: "Image/Edge_W.png" },
+          { label: "레드", add: 0, image: "Image/Edge_R.png" }
         ]
       }
     ]
