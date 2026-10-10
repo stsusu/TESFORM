@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesl Craft | Tesla Custom Studio</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <style>
+        :root {
+            --ts-black: #111111;
+            --ts-dark-gray: #171a20;
+            --ts-gray: #393c41;
+            --ts-light-gray: #f4f4f4;
+            --ts-white: #ffffff;
+            --ts-red: #e82127;
+            --ts-blue: #3e6ae1;
+            --ts-border: #e2e2e2;
+            --ts-radius: 20px;
+            --ts-font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--ts-font);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--ts-white);
+            color: var(--ts-dark-gray);
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 32px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: var(--ts-dark-gray);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            font-size: 10px;
+            font-weight: 700;
+            background: var(--ts-dark-gray);
+            color: var(--ts-white);
+            padding: 2px 7px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ts-dark-gray);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-btn.active {
+            background: var(--ts-dark-gray);
+            color: var(--ts-white);
+        }
+
+        .cart-badge {
+            background: var(--ts-red);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 4px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 55vh;
+            min-height: 380px;
+            background: #000;
+            color: var(--ts-white);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 50px;
+            text-align: center;
+            overflow: hidden;
+            margin-top: 56px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #d1d5db;
+        }
+
+        .hero-title {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            opacity: 0.85;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: var(--ts-white);
+            color: var(--ts-black);
+            padding: 12px 36px;
+            border-radius: var(--ts-radius);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* MAIN CONTAINER */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 100px;
+        }
+
+        /* CATEGORY FILTER */
+        .category-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .cat-chip {
+            padding: 8px 20px;
+            border-radius: var(--ts-radius);
+            border: 1px solid var(--ts-border);
+            background: var(--ts-white);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ts-gray);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .cat-chip:hover {
+            border-color: var(--ts-dark-gray);
+            color: var(--ts-dark-gray);
+        }
+
+        .cat-chip.active {
+            background: var(--ts-dark-gray);
+            color: var(--ts-white);
+            border-color: var(--ts-dark-gray);
+        }
+
+        /* PRODUCT GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .product-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--ts-white);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            background: var(--ts-light-gray);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .product-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(23, 26, 32, 0.85);
+            color: var(--ts-white);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+        }
+
+        .product-info {
+            padding: 16px 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ts-dark-gray);
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: #666;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ts-black);
+        }
+
+        /* CART MODAL / OVERLAY */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: flex-end;
+            z-index: 2000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            width: 100%;
+            max-width: 520px;
+            background: var(--ts-white);
+            height: 100%;
+            overflow-y: auto;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #888;
+            line-height: 1;
+        }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--ts-border);
+            border-radius: 8px;
+            padding: 4px 12px;
+            width: fit-content;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--ts-dark-gray);
+            padding: 0 6px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--ts-border);
+            align-items: center;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: var(--ts-light-gray);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .cart-item-option {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 6px;
+        }
+
+        .price-summary {
+            background: var(--ts-light-gray);
+            padding: 16px;
+            border-radius: 12px;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .summary-row.total {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--ts-red);
+            border-top: 1px dashed #ccc;
+            padding-top: 8px;
+            margin-top: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--ts-dark-gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--ts-border);
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--ts-black);
+        }
+
+        .bank-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--ts-blue);
+            color: #fff;
+            border: none;
+            border-radius: var(--ts-radius);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #2b52ba;
+        }
+
+        /* LOOKUP SECTION */
+        .lookup-section {
+            display: none;
+            max-width: 600px;
+            margin: 100px auto 60px;
+            background: #fff;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--ts-border);
+        }
+
+        .lookup-section.active {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid var(--ts-border);
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo" onclick="switchTab('shop')">
+            Tesl Craft <span>SOHP</span>
+        </div>
+        <nav>
+            <button class="nav-btn active" id="nav-shop" onclick="switchTab('shop')">제품 스토어</button>
+            <button class="nav-btn" id="nav-cart" onclick="openCartModal()">장바구니 <span class="cart-badge" id="cart-count">0</span></button>
+            <button class="nav-btn" id="nav-lookup" onclick="switchTab('lookup')">주문 조회</button>
+        </nav>
+    </header>
+
+    <!-- SHOP VIEW -->
+    <div id="shop-view">
+        <section class="hero">
+            <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=1600&auto=format&fit=crop&q=80" class="hero-bg" alt="TesCraft Hero">
+            <div class="hero-content">
+                <p class="hero-subtitle">Crafted Exclusively for Tesla</p>
+                <h1 class="hero-title">Tesl Craft 주문 센터</h1>
+                <p class="hero-desc">정밀 3D 프린팅으로 완성되는 테슬라 프리미엄 커스텀 제품</p>
+                <button class="hero-btn" onclick="document.getElementById('catalog').scrollIntoView({behavior: 'smooth'})">카탈로그 보기</button>
+            </div>
+        </section>
+
+        <main id="catalog">
+            <div class="category-bar" id="category-bar"></div>
+            <div class="product-grid" id="product-grid"></div>
+        </main>
+    </div>
+
+    <!-- LOOKUP VIEW -->
+    <div id="lookup-view" class="lookup-section">
+        <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">주문 내역 조회</h2>
+        <p style="font-size: 14px; color: #666; margin-bottom: 24px;">주문 시 등록하신 성함과 연락처를 입력해주세요.</p>
+        
+        <div class="form-group">
+            <label>주문자 성함</label>
+            <input type="text" id="lookup-name" class="form-control" placeholder="성함 입력">
+        </div>
+        <div class="form-group">
+            <label>연락처 (전체 또는 뒤 4자리)</label>
+            <input type="text" id="lookup-phone" class="form-control" placeholder="010-0000-0000">
+        </div>
+        <button class="btn-submit" onclick="searchOrder()" style="background: var(--ts-dark-gray);">조회하기</button>
+
+        <div id="lookup-result" style="margin-top: 32px;"></div>
+    </div>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="modal-container" style="max-width: 460px;">
+            <div>
+                <div class="modal-header">
+                    <h2 id="modal-product-name" style="font-size: 20px; font-weight: 700;">상품명</h2>
+                    <button class="modal-close" onclick="closeProductModal()">&times;</button>
+                </div>
+                <img id="modal-product-img" src="" style="width:100%; border-radius:12px; height:220px; object-fit:cover; margin-bottom:12px;">
+                <p id="modal-product-desc" style="font-size: 14px; color: #666; margin-bottom: 16px;"></p>
+
+                <div class="form-group">
+                    <label>옵션 선택</label>
+                    <select id="modal-option" class="form-control"></select>
+                </div>
+
+                <div class="form-group">
+                    <label>구매 수량</label>
+                    <div class="qty-control">
+                        <button class="qty-btn" onclick="adjustDetailQty(-1)">-</button>
+                        <span id="modal-qty" style="font-weight: 700;">1</span>
+                        <button class="qty-btn" onclick="adjustDetailQty(1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 24px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <span style="font-size:14px; color:#666;">선택 금액</span>
+                    <span id="modal-product-price" style="font-size:20px; font-weight:700; color:var(--ts-black);">0원</span>
+                </div>
+                <button class="btn-submit" onclick="addToCartFromModal()" style="background: var(--ts-dark-gray);">장바구니에 담기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART & CHECKOUT MODAL -->
+    <div class="modal-overlay" id="cart-modal">
+        <div class="modal-container">
+            <div>
+                <div class="modal-header">
+                    <h2 style="font-size: 20px; font-weight: 700;">장바구니 및 주문결제</h2>
+                    <button class="modal-close" onclick="closeCartModal()">&times;</button>
+                </div>
+
+                <!-- CART ITEMS -->
+                <div id="cart-items-container"></div>
+
+                <!-- PRICE SUMMARY -->
+                <div class="price-summary">
+                    <div class="summary-row">
+                        <span>상품 합계</span>
+                        <span id="summary-subtotal">0원</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>기본 배송비</span>
+                        <span id="summary-shipping">3,000원</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>최종 결제 금액</span>
+                        <span id="summary-total">0원</span>
+                    </div>
+                </div>
+
+                <!-- ORDER FORM -->
+                <h3 style="font-size: 16px; font-weight: 700; margin: 20px 0 12px;">주문자 정보 작성</h3>
+                <div class="form-group">
+                    <label>주문자 성함 *</label>
+                    <input type="text" id="order-name" class="form-control" placeholder="성함을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label>연락처 *</label>
+                    <input type="text" id="order-phone" class="form-control" placeholder="010-0000-0000">
+                </div>
+                <div class="form-group">
+                    <label>배송지 주소 *</label>
+                    <input type="text" id="order-address" class="form-control" placeholder="상세 주소를 입력하세요">
+                </div>
+
+                <div class="bank-box">
+                    <div style="font-size:12px; color:#666; margin-bottom:2px;">입금 계좌 안내</div>
+                    <div style="font-weight:700; font-size:14px; color:var(--ts-dark-gray); display:flex; justify-content:space-between; align-items:center;">
+                        <span id="bank-info-text">카카오뱅크 3333-05-1459148 김정곤</span>
+                        <button onclick="copyBankInfo()" style="padding:2px 8px; font-size:11px; cursor:pointer;">복사</button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <button class="btn-submit" onclick="submitFinalOrder()">주문서 제출하기</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© TesCraft Studio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // CONFIG
+        const CONFIG = {
+            siteTitle: "TesCraft Studio",
+            shippingFee: 3000, // 기본 배송비 설정
+            bankInfo: { bankName: "카카오뱅크", accountNumber: "3333-05-1459148", accountHolder: "김정곤" },
+            categories: [
+                { id: 'all', name: '전체 보기' },
+                { id: 'interior', name: '실내 용품' },
+                { id: 'exterior', name: '익스테리어' },
+                { id: 'acc', name: '액세서리' }
+            ],
+            products: [
+                {
+                    id: 'p1',
+                    name: '모델Y 센터콘솔 맞춤 오거나이저',
+                    category: 'interior',
+                    price: 29000,
+                    badge: 'BEST',
+                    description: '정밀 3D 스캐닝 기반 맞춤 설계. 일체감 있는 센터콘솔 정리 트레이입니다.',
+                    image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&auto=format&fit=crop&q=80',
+                    options: ['기본형 (카본 블랙)', '고급형 (플로킹 마감)']
+                },
+                {
+                    id: 'p2',
+                    name: '3D 프린팅 클릭어 키링',
+                    category: 'acc',
+                    price: 15000,
+                    badge: 'NEW',
+                    description: '손맛이 살아있는 기계식 스위치 타입 테슬라 커스텀 키링입니다.',
+                    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80',
+                    options: ['무소음 스위치', '클릭키 스위치 (청축)']
+                }
+            ]
+        };
+
+        let cart = []; // 장바구니 데이터
+        let currentDetailProduct = null;
+        let currentDetailQty = 1;
+
+        function init() {
+            renderCategories();
+            renderProducts('all');
+            updateCartBadge();
+            document.getElementById('bank-info-text').innerText = `${CONFIG.bankInfo.bankName} ${CONFIG.bankInfo.accountNumber} ${CONFIG.bankInfo.accountHolder}`;
+        }
+
+        function renderCategories() {
+            const bar = document.getElementById('category-bar');
+            bar.innerHTML = CONFIG.categories.map((c, i) => 
+                `<button class="cat-chip ${i===0?'active':''}" onclick="filterCategory('${c.id}', this)">${c.name}</button>`
+            ).join('');
+        }
+
+        function filterCategory(catId, el) {
+            document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            renderProducts(catId);
+        }
+
+        function renderProducts(catId) {
+            const grid = document.getElementById('product-grid');
+            const list = catId === 'all' ? CONFIG.products : CONFIG.products.filter(p => p.category === catId);
+            
+            grid.innerHTML = list.map(p => `
+                <div class="product-card" onclick="openProductModal('${p.id}')">
+                    <div class="img-wrapper">
+                        ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+                        <img src="${p.image}" class="product-img" alt="${p.name}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-desc">${p.description}</div>
+                        <div class="product-price">${p.price.toLocaleString()}원</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* DETAIL MODAL */
+        function openProductModal(id) {
+            currentDetailProduct = CONFIG.products.find(p => p.id === id);
+            currentDetailQty = 1;
+            
+            document.getElementById('modal-product-name').innerText = currentDetailProduct.name;
+            document.getElementById('modal-product-img').src = currentDetailProduct.image;
+            document.getElementById('modal-product-desc').innerText = currentDetailProduct.description;
+            document.getElementById('modal-qty').innerText = currentDetailQty;
+            
+            const optSelect = document.getElementById('modal-option');
+            optSelect.innerHTML = currentDetailProduct.options.map(o => `<option value="${o}">${o}</option>`).join('');
+
+            updateDetailPrice();
+            document.getElementById('product-modal').classList.add('active');
+        }
+
+        function adjustDetailQty(delta) {
+            if (currentDetailQty + delta >= 1) {
+                currentDetailQty += delta;
+                document.getElementById('modal-qty').innerText = currentDetailQty;
+                updateDetailPrice();
+            }
+        }
+
+        function updateDetailPrice() {
+            const total = currentDetailProduct.price * currentDetailQty;
+            document.getElementById('modal-product-price').innerText = total.toLocaleString() + '원';
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.remove('active');
+        }
+
+        function addToCartFromModal() {
+            const option = document.getElementById('modal-option').value;
+            
+            // 기존 동일 상품/옵션 존재 여부 체크
+            const existingIndex = cart.findIndex(item => item.id === currentDetailProduct.id && item.option === option);
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += currentDetailQty;
+            } else {
+                cart.push({
+                    id: currentDetailProduct.id,
+                    name: currentDetailProduct.name,
+                    price: currentDetailProduct.price,
+                    image: currentDetailProduct.image,
+                    option: option,
+                    qty: currentDetailQty
+                });
+            }
+
+            updateCartBadge();
+            closeProductModal();
+            openCartModal(); // 장바구니 자동 오픈
+        }
+
+        /* CART & CHECKOUT */
+        function updateCartBadge() {
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').innerText = totalCount;
+        }
+
+        function openCartModal() {
+            renderCartItems();
+            document.getElementById('cart-modal').classList.add('active');
+        }
+
+        function closeCartModal() {
+            document.getElementById('cart-modal').classList.remove('active');
+        }
+
+        function changeCartQty(index, delta) {
+            if (cart[index].qty + delta > 0) {
+                cart[index].qty += delta;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#888; padding:30px 0;">장바구니가 비어 있습니다.</p>';
+                document.getElementById('summary-subtotal').innerText = '0원';
+                document.getElementById('summary-total').innerText = '0원';
+                return;
+            }
+
+            let subtotal = 0;
+            container.innerHTML = cart.map((item, idx) => {
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                return `
+                    <div class="cart-item">
+                        <img src="${item.image}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-option">옵션: ${item.option}</div>
+                            <div style="font-weight:700; font-size:14px;">${itemTotal.toLocaleString()}원</div>
+                        </div>
+                        <div class="qty-control">
+                            <button class="qty-btn" onclick="changeCartQty(${idx}, -1)">-</button>
+                            <span style="font-size:13px; font-weight:700;">${item.qty}</span>
+                            <button class="qty-btn" onclick="changeCartQty(${idx}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const shipping = subtotal > 0 ? CONFIG.shippingFee : 0;
+            const total = subtotal + shipping;
+
+            document.getElementById('summary-subtotal').innerText = subtotal.toLocaleString() + '원';
+            document.getElementById('summary-shipping').innerText = shipping.toLocaleString() + '원';
+            document.getElementById('summary-total').innerText = total.toLocaleString() + '원';
+        }
+
+        function submitFinalOrder() {
+            if (cart.length === 0) {
+                alert('장바구니에 상품을 담아주세요.');
+                return;
+            }
+
+            const name = document.getElementById('order-name').value.trim();
+            const phone = document.getElementById('order-phone').value.trim();
+            const address = document.getElementById('order-address').value.trim();
+
+            if (!name || !phone || !address) {
+                alert('주문자 필수 정보(성함, 연락처, 주소)를 모두 입력해 주세요.');
+                return;
+            }
+
+            const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const total = subtotal + CONFIG.shippingFee;
+
+            const order = {
+                id: 'ORD-' + Date.now().toString().slice(-6),
+                items: [...cart],
+                subtotal: subtotal,
+                shippingFee: CONFIG.shippingFee,
+                totalPrice: total,
+                name: name,
+                phone: phone,
+                address: address,
+                date: new Date().toLocaleDateString()
+            };
+
+            const orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+            orders.push(order);
+            localStorage.setItem('my_orders', JSON.stringify(orders));
+
+            alert(`주문이 성공적으로 접수되었습니다!\n주문번호: ${order.id}\n최종 입금액: ${total.toLocaleString()}원\n안내된 계좌로 입금해 주시면 제작이 진행됩니다.`);
+            
+            cart = []; // 장바구니 비우기
+            updateCartBadge();
+            closeCartModal();
+        }
+
+        function copyBankInfo() {
+            navigator.clipboard.writeText(`${CONFIG.bankInfo.bankName} ${CONFIG.bankInfo.accountNumber} ${CONFIG.bankInfo.accountHolder}`);
+            alert('계좌번호가 복사되었습니다!');
+        }
+
+        function switchTab(tab) {
+            document.getElementById('shop-view').style.display = tab === 'shop' ? 'block' : 'none';
+            document.getElementById('lookup-view').classList.toggle('active', tab === 'lookup');
+            document.getElementById('nav-shop').classList.toggle('active', tab === 'shop');
+            document.getElementById('nav-lookup').classList.toggle('active', tab === 'lookup');
+        }
+
+        function searchOrder() {
+            const name = document.getElementById('lookup-name').value.trim();
+            const phone = document.getElementById('lookup-phone').value.trim();
+            const orders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+
+            const matched = orders.filter(o => o.name === name && o.phone.includes(phone));
+            const resultBox = document.getElementById('lookup-result');
+
+            if (matched.length === 0) {
+                resultBox.innerHTML = '<p style="color:#888; text-align:center;">일치하는 주문 내역이 없습니다.</p>';
+                return;
+            }
+
+            resultBox.innerHTML = matched.map(o => `
+                <div style="background:var(--ts-light-gray); padding:16px; border-radius:12px; margin-bottom:12px;">
+                    <div style="font-weight:700; font-size:15px; margin-bottom:4px;">주문번호: ${o.id} (${o.date})</div>
+                    <div style="font-size:13px; color:#555; margin-bottom:8px;">
+                        ${o.items ? o.items.map(i => `• ${i.name} (${i.option}) x${i.qty}개`).join('<br>') : ''}
+                    </div>
+                    <div style="font-size:14px; font-weight:700; color:var(--ts-red);">
+                        총 결제 금액: ${o.totalPrice ? o.totalPrice.toLocaleString() : o.price.toLocaleString()}원 (배송비 포함)
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        init();
+    </script>
+</body>
+</html>
