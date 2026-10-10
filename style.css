@@ -74,10 +74,14 @@ main{min-height:70vh}
 .opt-name{font-size:14px;font-weight:600;margin-bottom:8px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip input{position:absolute;opacity:0;pointer-events:none}
-.chip span{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:var(--radius);font-size:14px;cursor:pointer;user-select:none;background:#fff}
+.chip > span{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:var(--radius);font-size:14px;cursor:pointer;user-select:none;background:#fff}
 .chip input:checked + span{border-color:var(--text);box-shadow:inset 0 0 0 1px var(--text);font-weight:600}
 .chip input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
 .chip em{font-style:normal;color:var(--text-sub);font-size:12px;margin-left:4px}
+.chip.has-img > span{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px;min-width:88px;text-align:center}
+.chip-img{width:72px;height:72px;object-fit:cover;border-radius:4px;background:var(--bg-soft)}
+.chip-text{font-size:13px}
+.chip.has-img em{display:block;margin:0}
 .qty-row{display:flex;align-items:center;gap:12px;margin:6px 0 20px}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius)}
 .qty button{width:40px;height:40px;border:0;background:none;font-size:18px;cursor:pointer}
