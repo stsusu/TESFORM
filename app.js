@@ -106,17 +106,17 @@
   // ---------- 주문 조회 (구글 시트 연동) ----------
   var STATUS_STEPS = ["입금 대기", "입금 확인", "제작 중", "배송 중", "배송 완료"];
 
-  function lookupOrder(no, phone, box) {
+  function lookupOrder(name, phone, box) {
     if (!CFG.lookupUrl) { box.innerHTML = ""; return; }
     box.innerHTML = '<div class="notice">조회 중이에요...</div>';
     var url = CFG.lookupUrl + (CFG.lookupUrl.indexOf("?") === -1 ? "?" : "&") +
-      "no=" + encodeURIComponent(no) + "&phone=" + encodeURIComponent(phone);
+      "name=" + encodeURIComponent(name) + "&phone=" + encodeURIComponent(phone);
     fetch(url).then(function (r) { return r.json(); }).then(function (d) {
       if (!d || !d.ok) {
-        box.innerHTML = '<div class="notice">일치하는 주문을 찾지 못했어요. 주문번호와 연락처를 다시 확인해주세요.<br>방금 주문했다면 잠시 후 다시 조회해보세요.</div>';
+        box.innerHTML = '<div class="notice">일치하는 주문을 찾지 못했어요. 주문 시 입력한 이름과 연락처를 다시 확인해주세요.<br>방금 주문했다면 잠시 후 다시 조회해보세요.</div>';
         return;
       }
-      box.innerHTML = lookupHtml(d.order);
+      box.innerHTML = (d.orders || []).map(lookupHtml).join("");
       box.scrollIntoView({ behavior: "smooth", block: "start" });
     }).catch(function () {
       box.innerHTML = '<div class="notice">조회에 실패했어요. 잠시 후 다시 시도해주세요.</div>';
@@ -441,12 +441,12 @@
     var hasLookup = !!CFG.lookupUrl;
     var lookupForm = hasLookup
       ? '<form id="lookupForm" class="lk-form"><div class="opt-name">주문 조회 (어느 기기에서나)</div>' +
-        '<div class="field"><input id="lk_no" type="text" placeholder="주문번호 (예: 261010-141500)" autocomplete="off"></div>' +
+        '<div class="field"><input id="lk_name" type="text" placeholder="이름 (주문 시 입력한 이름)" autocomplete="off"></div>' +
         '<div class="field"><input id="lk_phone" type="tel" placeholder="주문 시 입력한 연락처"></div>' +
         '<button type="submit" class="btn block">조회하기</button></form><div id="lookupResult"></div>'
       : "";
     var noticeText = hasLookup
-      ? "아래 <b>저장된 주문내역</b>은 주문한 이 기기(브라우저)에만 보관돼요. 다른 기기에서는 위 <b>주문 조회</b>에 주문번호와 연락처를 입력하면 처리 상태와 배송 정보를 볼 수 있어요."
+      ? "아래 <b>저장된 주문내역</b>은 주문한 이 기기(브라우저)에만 보관돼요. 다른 기기에서는 위 <b>주문 조회</b>에 이름과 연락처를 입력하면 처리 상태와 배송 정보를 볼 수 있어요."
       : "주문내역은 <b>주문한 이 기기(브라우저)</b>에만 저장돼요. 다른 기기에서 접속하거나 브라우저 기록을 지우면 보이지 않아요. 입금 확인·배송 상태는 이 화면에 표시되지 않아요.";
     app.innerHTML = '<div class="wrap" style="max-width:680px"><h1 class="page-title">주문내역</h1>' + lookupForm +
       '<div class="notice">' + noticeText + "</div>" +
@@ -456,16 +456,16 @@
     if (lf) {
       lf.addEventListener("submit", function (e) {
         e.preventDefault();
-        var no = document.getElementById("lk_no").value.trim();
+        var nm = document.getElementById("lk_name").value.trim();
         var ph = document.getElementById("lk_phone").value.trim();
-        if (!no || !ph) { toast("주문번호와 연락처를 입력해주세요"); return; }
-        lookupOrder(no, ph, document.getElementById("lookupResult"));
+        if (!nm || !ph) { toast("이름과 연락처를 입력해주세요"); return; }
+        lookupOrder(nm, ph, document.getElementById("lookupResult"));
       });
     }
     app.querySelectorAll("[data-chk]").forEach(function (btn) {
       btn.onclick = function () {
         var o = loadOrders().filter(function (x) { return x.no === btn.dataset.chk; })[0];
-        if (o) lookupOrder(o.no, o.phone, document.getElementById("lookupResult"));
+        if (o) lookupOrder(o.name, o.phone, document.getElementById("lookupResult"));
       };
     });
 
