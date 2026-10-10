@@ -157,7 +157,7 @@
         '<div class="card-price">' + won(p.price) + (hasAdd ? " <small>부터</small>" : "") + "</div></div></a>";
     }).join("");
     app.innerHTML =
-      '<section class="hero"><h1>' + esc(CFG.tagline) + "</h1><p>3D 프린터로 제작하는 심플한 센터콘솔 시프터</p></section>" +
+      '<section class="hero"><h1>' + esc(CFG.tagline) + "</h1><p>3D 프린터로 제작된 테슬라 악세서리</p></section>" +
       '<div class="wrap">' + SEXY_NOTICE + '<div class="grid">' + cards + "</div></div>";
   }
 
