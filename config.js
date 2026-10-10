@@ -8,7 +8,7 @@ window.SHOP_CONFIG = {
 
   // 주문 조회용 구글 Apps Script 웹 앱 주소 (README.md 5번 참고)
   // 비워두면 "이 기기에 저장된 주문내역"만 보입니다.
-  lookupUrl: "",
+  lookupUrl: "https://script.google.com/macros/s/AKfycbwAxo0zZtdjexFmVOyiVHMDVpK3CEWwFTsi-pT8tFtqEV4JnVqA8dlw3syHPzPegS2n4Q/exec",
 
   // 입금 계좌
   bank: {
