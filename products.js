@@ -16,8 +16,9 @@ window.PRODUCTS = [
     price: 31000,                        // 기본 가격 (원)
     images: ["Image/2hole.png","Image/LED_sample.png","Image/sample_W.png"],   // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
     description: [
-      "센터콘솔에 장착하는 3D 프린터 제작 시프터입니다."
-      "LED를 별도 장착시 멋진 엠비언트 효과!!"],
+      "센터콘솔에 장착하는 3D 프린터 제작 시프터입니다.",
+      "LED를 별도 장착시 멋진 엠비언트 효과!!"
+    ],
     details: [
       "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
