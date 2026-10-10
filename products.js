@@ -14,7 +14,7 @@ window.PRODUCTS = [
     subtitle: " 하이랜드, 주니퍼 Y/YL 용",
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 31000,                        // 기본 가격 (원)
-    images: ["Image/2hole.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
+    images: ["Image/2hole.png",'Image/LED_sample.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
     description: "센터콘솔에 장착하는 3D 프린터 제작 시프터입니다. 심플한 디자인으로 주행 기어 조작이 한결 편해집니다.",
     details: [
       "소재: PETG",
@@ -25,26 +25,26 @@ window.PRODUCTS = [
       {
         name: "옵션1 · 색상",
         choices: [
-          { label: "블랙", add: 0, image: "Image/2hole_Black.jpg"},
-          { label: "화이트", add: 0 }
+          { label: "블랙", add: 0, image: "Image/hole2_body_B.jpg"},
+          { label: "화이트", add: 0, image: "Image/hole2_body_W.jpg" }
         ]
       },
       {
         name: "옵션2 · 시프터 색상",
         choices: [
-          { label: "반투명", add: 0 },
-          { label: "블랙", add: 0 },
-          { label: "레드", add: 0 }
+          { label: "반투명", add: 0, image: "Image/Shifter_T.jpg"},
+          { label: "블랙", add: 0, image: "Image/Shifter_B.jpg" },
+          { label: "레드", add: 0, image: "Image/Shifter_W.jpg" }
           
         ]
       },
       {
         name: "옵션3 · 버튼엣지 색상",
         choices: [
-          { label: "반투명", add: 0 },
-          { label: "블랙", add: 0 },
-          { label: "화이트", add: 0 },
-          { label: "레드", add: 0 }
+          { label: "반투명", add: 0, image: "Image/Edge_T.jpg" },
+          { label: "블랙", add: 0, image: "Image/Edge_B.jpg" },
+          { label: "화이트", add: 0, image: "Image/Edge_W.jpg" },
+          { label: "레드", add: 0, image: "Image/Edge_R.jpg" }
         ]
       }
     ]
