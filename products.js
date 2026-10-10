@@ -34,7 +34,7 @@ window.PRODUCTS = [
         choices: [
           { label: "반투명", add: 0, image: "Image/Shifter_T.png"},
           { label: "블랙", add: 0, image: "Image/Shifter_B.png" },
-          { label: "레드", add: 0, image: "Image/Shifter_W.png" }
+          { label: "레드", add: 0, image: "Image/Shifter_R.png" }
           
         ]
       },
