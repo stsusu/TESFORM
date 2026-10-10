@@ -157,7 +157,7 @@
         '<div class="card-price">' + won(p.price) + (hasAdd ? " <small>부터</small>" : "") + "</div></div></a>";
     }).join("");
     app.innerHTML =
-      '<section class="hero"><h1>' + esc(CFG.tagline) + "</h1><p>3D 프린터로 제작된 테슬라 악세서리</p></section>" +
+      '<section class="hero"><h1>' + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D 프린터로 제작하는 심플한 센터콘솔 시프터") + "</p></section>" +
       '<div class="wrap">' + SEXY_NOTICE + '<div class="grid">' + cards + "</div></div>";
   }
 
@@ -176,8 +176,9 @@
     var opts = (p.options || []).map(function (o, oi) {
       return '<div class="opt"><div class="opt-name">' + esc(o.name) + '</div><div class="chips">' +
         o.choices.map(function (c, ci) {
-          return '<label class="chip"><input type="radio" name="opt' + oi + '" data-o="' + oi + '" value="' + ci + '"' + (ci === 0 ? " checked" : "") + ">" +
-            "<span>" + esc(c.label) + (c.add > 0 ? "<em>+" + won(c.add) + "</em>" : "") + "</span></label>";
+          var im = c.image ? '<img class="chip-img" src="' + esc(c.image) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : "";
+          return '<label class="chip' + (c.image ? " has-img" : "") + '"><input type="radio" name="opt' + oi + '" data-o="' + oi + '" value="' + ci + '"' + (ci === 0 ? " checked" : "") + ">" +
+            "<span>" + im + '<span class="chip-text">' + esc(c.label) + (c.add > 0 ? "<em>+" + won(c.add) + "</em>" : "") + "</span></span></label>";
         }).join("") + "</div></div>";
     }).join("");
 
@@ -204,7 +205,12 @@
     app.querySelectorAll('input[type=radio]').forEach(function (r) {
       r.addEventListener("change", function () {
         var o = p.options[Number(r.dataset.o)];
-        sel[o.name] = o.choices[Number(r.value)].label;
+        var ch = o.choices[Number(r.value)];
+        sel[o.name] = ch.label;
+        if (ch.image) {
+          document.getElementById("mainImg").innerHTML = imgBlock({ name: p.name, images: [ch.image] }, 0);
+          app.querySelectorAll(".thumbs button").forEach(function (x) { x.classList.remove("on"); });
+        }
         refresh();
       });
     });
