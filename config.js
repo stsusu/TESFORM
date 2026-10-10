@@ -2,8 +2,8 @@
 //  사이트 기본 설정 (여기만 고치면 됩니다)
 // ============================================================
 window.SHOP_CONFIG = {
-  shopName: "CONSOLE SHIFT",          // 사이트 이름 (원하는 이름으로 변경)
-  tagline: "테슬라 센터콘솔 시프터",
+  shopName: "SHIFT ON",          // 사이트 이름 (원하는 이름으로 변경)
+  tagline: "테슬라 센터콘솔 주문사이트 (TKC)",
   shippingFee: 3000,                   // 배송비 (원)
 
   // 주문 조회용 구글 Apps Script 웹 앱 주소 (README.md 5번 참고)
