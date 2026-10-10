@@ -10,8 +10,8 @@
 window.PRODUCTS = [
   {
     id: "shifter-2holes",                 // 상품 고유 ID (영문/숫자/하이픈, 중복 금지)
-    name: "센터콘솔 시프터 2구 (하이랜드, 주니퍼 Y/YL 용)",
-    subtitle: "3D 프린팅 · 하이랜드, 주니퍼 Y / YL 용",
+    name: "센터콘솔 시프터 2구",
+    subtitle: " 하이랜드, 주니퍼 Y/YL 용",
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 31000,                        // 기본 가격 (원)
     images: ["Image/2hole.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
@@ -25,7 +25,7 @@ window.PRODUCTS = [
       {
         name: "옵션1 · 색상",
         choices: [
-          { label: "블랙", add: 0 },
+          { label: "블랙", add: 0, image: "Image/2hole_Black.jpg"},
           { label: "화이트", add: 0 }
         ]
       },
