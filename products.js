@@ -10,7 +10,7 @@
 window.PRODUCTS = [
   {
     id: "shifter-basic",                 // 상품 고유 ID (영문/숫자/하이픈, 중복 금지)
-    name: "센터콘솔 시프터 (하이랜드, 주니퍼 Y/YL 용)",
+    name: "센터콘솔 시프터 2구 (하이랜드, 주니퍼 Y/YL 용)",
     subtitle: "3D 프린팅 · 하이랜드, 주니퍼 Y/YL 용",
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 39000,                        // 기본 가격 (원)
