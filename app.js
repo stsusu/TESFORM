@@ -157,7 +157,8 @@
         '<div class="card-price">' + won(p.price) + (hasAdd ? " <small>부터</small>" : "") + "</div></div></a>";
     }).join("");
     app.innerHTML =
-      '<section class="hero"><h1>' + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D 프린터로 제작하는 심플한 센터콘솔 시프터") + "</p></section>" +
+      '<section class="hero"><img class="hero-logo" src="images/logo-full.png" alt="' + esc(CFG.shopName) + '" onerror="this.style.display=\'none\'">' +
+      "<h1>" + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D 프린터로 제작하는 심플한 센터콘솔 시프터") + "</p></section>" +
       '<div class="wrap">' + SEXY_NOTICE + '<div class="grid">' + cards + "</div></div>";
   }
 
@@ -184,6 +185,11 @@
 
     var det = (p.details && p.details.length) ? '<ul class="details">' + p.details.map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("") + "</ul>" : "";
 
+    var descImgs = (p.descImages || []).map(function (s) {
+      return '<img src="' + esc(s) + '" alt="' + esc(p.name) + ' 상세 이미지" loading="lazy" onerror="this.style.display=\'none\'">';
+    }).join("");
+    var descSection = descImgs ? '<section class="desc-images"><h2>상세 정보</h2>' + descImgs + "</section>" : "";
+
     app.innerHTML = '<div class="wrap"><a class="back" href="#/">← 제품 목록</a><div class="detail">' +
       '<div class="gallery"><div class="main-img" id="mainImg">' + imgBlock(p, 0) + "</div>" + thumbs + "</div>" +
       '<div class="info"><h1>' + esc(p.name) + '</h1><p class="sub">' + esc(p.subtitle || "") + "</p>" +
@@ -194,7 +200,7 @@
       '<button type="button" id="qPlus" aria-label="수량 증가">+</button></div></div>' +
       '<div class="btn-row"><button type="button" class="btn ghost" id="addBtn">장바구니 담기</button>' +
       '<button type="button" class="btn" id="buyBtn">바로 구매</button></div>' +
-      "</div></div></div>";
+      "</div></div>" + descSection + "</div>";
 
     function refresh() {
       document.getElementById("priceNow").textContent = won(unitPrice(p, sel) * qty);
@@ -506,7 +512,6 @@
 
   // ---------- init ----------
   document.title = CFG.shopName + " | " + CFG.tagline;
-  document.getElementById("logo").textContent = CFG.shopName;
   document.getElementById("footerText").textContent = "© " + new Date().getFullYear() + " " + CFG.shopName;
   updateCount();
   window.addEventListener("hashchange", route);
