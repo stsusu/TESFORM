@@ -21,6 +21,7 @@ window.PRODUCTS = [
       "제작 방식: 주문 후 3D 프린팅 제작",
       "제작 기간: 주문 확인 후 순차 제작"
     ],
+    notice: true, 
     options: [
       {
         name: "옵션1 · 색상",
@@ -63,6 +64,7 @@ window.PRODUCTS = [
       "제작 방식: 주문 후 3D 프린팅 제작",
       "제작 기간: 주문 확인 후 순차 제작"
     ],
+    notice: true, 
     options: [
       {
         name: "옵션1 · 색상",
@@ -118,6 +120,7 @@ window.PRODUCTS = [
       "제작 방식: 주문 후 3D 프린팅 제작",
       "제작 기간: 주문 확인 후 순차 제작"
     ],
+   notice: true, 
     options: [
       {
         name: "시프터 색상",
@@ -143,6 +146,7 @@ window.PRODUCTS = [
       "제작 방식: 주문 후 3D 프린팅 제작",
       "제작 기간: 주문 확인 후 순차 제작"
     ],
+     notice: true, 
     options: [
       {
         name: "버튼엣지 색상",
