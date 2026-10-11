@@ -22,22 +22,26 @@ button{font-family:inherit}
 img{max-width:100%;display:block}
 
 /* header */
-.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.94);backdrop-filter:blur(8px);border-bottom:1px solid #1d1d1f;color:#fff}
 .header-inner{max-width:var(--max);margin:0 auto;padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:700;letter-spacing:.14em;font-size:15px}
+.logo{font-weight:700;letter-spacing:.14em;font-size:15px;color:#fff;display:flex;align-items:center}
+.logo img{height:15px;width:auto;display:block}
 .nav{display:flex;gap:6px}
 .nav-link{padding:8px 12px;border-radius:var(--radius);font-size:14px;font-weight:500}
-.nav-link:hover{background:var(--bg-soft)}
-.cart-count{display:inline-block;min-width:20px;padding:0 6px;margin-left:2px;border-radius:10px;background:var(--text);color:#fff;font-size:12px;text-align:center;line-height:20px}
-.cart-count.zero{background:#b5b7ba}
+.nav-link{color:#fff;white-space:nowrap}
+.logo{flex:0 0 auto}
+.nav-link:hover{background:#1d1d1f}
+.cart-count{display:inline-block;min-width:20px;padding:0 6px;margin-left:2px;border-radius:10px;background:#fff;color:#000;font-size:12px;font-weight:700;text-align:center;line-height:20px}
+.cart-count.zero{background:#3a3a3c;color:#c7c7cc}
 
 main{min-height:70vh}
 .wrap{max-width:var(--max);margin:0 auto;padding:24px 16px 56px}
 
 /* hero */
-.hero{background:var(--bg-soft);text-align:center;padding:56px 16px 48px}
-.hero h1{margin:0 0 8px;font-size:clamp(26px,6vw,44px);font-weight:600;letter-spacing:-.02em}
-.hero p{margin:0;color:var(--text-sub);font-size:clamp(14px,3.6vw,17px)}
+.hero{background:#000;color:#fff;text-align:center;padding:48px 16px 52px}
+.hero-logo{display:block;width:min(300px,62vw);height:auto;margin:0 auto 28px}
+.hero h1{margin:0 0 8px;font-size:clamp(20px,5vw,30px);font-weight:500;letter-spacing:-.01em}
+.hero p{margin:0;color:#a1a1a6;font-size:clamp(14px,3.6vw,16px)}
 
 /* notice */
 .notice{background:#fff7e0;border:1px solid #f1dc9b;border-radius:var(--radius);padding:12px 14px;font-size:14px;color:#6a5200;margin:16px 0}
@@ -68,7 +72,10 @@ main{min-height:70vh}
 .info h1{margin:0;font-size:26px;font-weight:600;letter-spacing:-.01em}
 .info .sub{color:var(--text-sub);margin:2px 0 16px}
 .price-now{font-size:24px;font-weight:600;margin:6px 0 18px}
-.desc{color:var(--text-sub);font-size:15px;margin-bottom:12px}
+.desc{color:var(--text-sub);font-size:15px;margin-bottom:12px;white-space:pre-line}
+.desc-images{margin-top:40px;border-top:1px solid var(--line);padding-top:24px}
+.desc-images h2{font-size:20px;font-weight:600;margin:0 0 16px}
+.desc-images img{display:block;width:100%;max-width:860px;margin:0 auto 12px;border-radius:6px}
 .details{margin:0 0 20px;padding-left:18px;color:var(--text-sub);font-size:14px}
 .opt{margin-bottom:18px}
 .opt-name{font-size:14px;font-weight:600;margin-bottom:8px}
@@ -182,9 +189,10 @@ main{min-height:70vh}
 .lk-row span{color:var(--text-sub)}
 
 /* footer / toast */
-.footer{border-top:1px solid var(--line);padding:28px 16px;text-align:center;font-size:13px;color:var(--text-sub);background:var(--bg-soft)}
+.footer{border-top:1px solid #1d1d1f;padding:28px 16px;text-align:center;font-size:13px;color:#a1a1a6;background:#000}
 .footer p{margin:4px 0}
 .muted{color:#8b8d91}
+.footer .muted{color:#6e6e73}
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--text);color:#fff;padding:12px 18px;border-radius:30px;font-size:14px;opacity:0;pointer-events:none;transition:all .25s;z-index:100;max-width:90vw}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -195,6 +203,10 @@ main{min-height:70vh}
   .summary{position:static}
 }
 @media (max-width:520px){
+  .header-inner{padding:0 12px}
+  .logo img{height:11px}
+  .nav{gap:0}
+  .nav-link{padding:8px 8px;font-size:13px}
   .grid{grid-template-columns:1fr}
   .hero{padding:40px 16px 34px}
   .wrap{padding:16px 14px 44px}
