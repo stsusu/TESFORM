@@ -157,8 +157,8 @@
         '<div class="card-price">' + won(p.price) + (hasAdd ? " <small>부터</small>" : "") + "</div></div></a>";
     }).join("");
     app.innerHTML =
-      '<section class="hero"><img class="hero-logo" src="images/logo-full.png" alt="' + esc(CFG.shopName) + '" onerror="this.style.display=\'none\'">' +
-      "<h1>" + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D 프린터로 제작하는 심플한 센터콘솔 시프터") + "</p></section>" +
+      '<section class="hero"><img class="hero-logo" src="image/logo-full.png" alt="' + esc(CFG.shopName) + '" onerror="this.style.display=\'none\'">' +
+      "<h1>" + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D printed TESLA Accessories") + "</p></section>" +
       '<div class="wrap">' + SEXY_NOTICE + '<div class="grid">' + cards + "</div></div>";
   }
 
@@ -291,7 +291,7 @@
       field("phone", "연락처", "tel", "010-0000-0000", true, "연락처를 정확히 입력해주세요.") +
       field("address", "주소", "text", "도로명 주소 + 상세주소", true, "주소를 입력해주세요.") +
       field("nickname", "카페닉네임", "text", "카페에서 사용하는 닉네임", true, "카페닉네임을 입력해주세요.") +
-      '<div class="field"><label for="f_request">추가요청사항<span class="opt-tag">(선택)</span></label><textarea id="f_request" name="request" placeholder="배송 시 요청사항 등 자유롭게 적어주세요."></textarea></div>' +
+      '<div class="field"><label for="f_request">추가요청사항<span class="opt-tag">(선택)</span></label><textarea id="f_request" name="request" placeholder="추가 요청사항 (ex. 엣지색상 mix, 케이블구멍 삭제)"></textarea></div>' +
       '<div class="field consent" id="consentField"><label><input type="checkbox" id="f_consent"><span>개인정보 수집 및 이용에 동의합니다. <span class="req">(필수)</span></span></label>' +
       "<details><summary>자세히 보기</summary><ul><li>수집 항목: 이름, 연락처, 주소, 카페닉네임, 추가요청사항</li><li>이용 목적: 주문 확인, 제품 제작 및 배송, 문의 응대</li><li>보유 기간: 주문 처리 및 배송 완료 후 필요한 기간 동안 보관 후 파기</li><li>동의를 거부할 수 있으나, 거부 시 주문이 불가합니다.</li></ul></details>" +
       '<div class="err">개인정보 수집 및 이용에 동의해주세요.</div></div>' +
