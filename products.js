@@ -22,6 +22,7 @@ window.PRODUCTS = [
       "제작 기간: 주문 확인 후 순차 제작"
     ],
     notice: true, 
+    notice: "3D 프린터로 제작되어 층간무늬가 있으며, 사출품과 같은 마감은 아니므로 예민하신분은 참고부탁드립니다.", 
     options: [
       {
         name: "옵션1 · 색상",
@@ -65,6 +66,7 @@ window.PRODUCTS = [
       "제작 기간: 주문 확인 후 순차 제작"
     ],
     notice: true, 
+     notice: "3D 프린터로 제작되어 층간무늬가 있으며, 사출품과 같은 마감은 아니므로 예민하신분은 참고부탁드립니다.", 
     options: [
       {
         name: "옵션1 · 색상",
@@ -93,6 +95,54 @@ window.PRODUCTS = [
       }
     ]
   },
+   {
+    id: "shifter-4holes",                 // 상품 고유 ID (영문/숫자/하이픈, 중복 금지)
+    name: "센터콘솔 버튼홀더 4구",
+    subtitle: " 하이랜드, 주니퍼 Y/YL 용",
+    badge: "NEW",                        // 뱃지 (필요 없으면 "")
+    price: 25000,                        // 기본 가격 (원)
+    images: ["Image/3hole_free.png","Image/LED_sample.png","Image/sample_W.png","Image/Free.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
+    description: "센터콘솔에 장착하는 편리한 시프터! \n LED 별도 장착시 화려 엠비언트 효과!! \n 시프터와 버튼 3구로 구성되어있습니다.\n 에어밸브캡 리무버 무료증정 이벤트중",
+    details: [
+      "소재: PETG",
+      "제작 방식: 주문 후 3D 프린팅 제작",
+      "제작 기간: 주문 확인 후 순차 제작"
+    ],
+    notice: true, 
+     notice: "3D 프린터로 제작되어 층간무늬가 있으며, 사출품과 같은 마감은 아니므로 예민하신분은 참고부탁드립니다.", 
+    options: [
+      {
+        name: "옵션1 · 색상",
+        choices: [
+          { label: "블랙", add: 0, image: "Image/4holes_B.png"},
+          { label: "화이트", add: 0, image: "Image/4holes_W.png" }
+        ]
+      },
+       {
+        name: "옵션2 · 버튼배열",
+        choices: [
+          { label: "배열 1", add: 0, image: "Image/4holes_1.png"},
+          { label: "배열 2", add: 0, image: "Image/4holes_2.png" }
+        ]
+      },
+      {
+        name: "옵션3 · 버튼엣지 색상",
+        choices: [
+          { label: "반투명", add: 0, image: "Image/Edge_T.png" },
+          { label: "블랙", add: 0, image: "Image/Edge_B.png" },
+          { label: "화이트", add: 0, image: "Image/Edge_W.png" },
+          { label: "레드", add: 0, image: "Image/Edge_R.png" }
+        ]
+      },
+      {
+        name: "할인이벤트 · 타이어 밸브캡 리무버",
+        choices: [
+          { label: "구매", add: 3000, image: "Image/Cap_remover.png" },
+          { label: "미구매", add: 0 }
+        ]
+      }
+    ]
+  },
   {
     id: "remover",                 // 상품 고유 ID (영문/숫자/하이픈, 중복 금지)
     name: "타이어 에어캡 리무버",
@@ -105,7 +155,9 @@ window.PRODUCTS = [
       "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
       "제작 기간: 주문 확인 후 순차 제작"
-    ]
+    ],
+    notice: "2,3구 시프터 구매시 무료증정", 
+    notice: "4구 구매시 할인판매 - 여기서 구매하시면 할인적용이 안되요. \n 4구 구매시 옵션으로 구매해주세요"
   },
  {
     id: "shifter",                 // 상품 고유 ID (영문/숫자/하이픈, 중복 금지)
