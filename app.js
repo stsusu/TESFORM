@@ -29,7 +29,26 @@
     return '<img src="' + esc(src) + '" alt="' + esc(p.name) + '" loading="lazy" ' +
       "onerror=\"this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'IMAGE'}))\">";
   }
-  var SEXY_NOTICE = '<div class="notice"><b>구매 전 꼭 확인해주세요.</b> 본 제품은 <b>섹시버튼</b>이 있어야 사용할 수 있습니다.</div>';
+  // 상품별 안내 문구: products.js 의 notice 값으로 결정
+  //   notice: true            → 기본 문구 (섹시버튼 안내)
+  //   notice: "직접 쓴 문구"   → 그 문구 (\n 으로 줄바꿈)
+  //   notice 없음 / false      → 안내 문구 없음
+  function noticeOf(p) {
+    var n = p && p.notice;
+    if (!n) return null;
+    if (n === true) {
+      return {
+        html: '<b>구매 전 꼭 확인해주세요.</b> 본 제품은 <b>섹시버튼</b>이 있어야 사용할 수 있습니다.',
+        text: "섹시버튼이 있는 차량에서만 사용 가능한 제품입니다."
+      };
+    }
+    var t = String(n);
+    return { html: esc(t).replace(/\n/g, "<br>"), text: t.replace(/\s*\n\s*/g, " ") };
+  }
+  function noticeBox(p) {
+    var n = noticeOf(p);
+    return n ? '<div class="notice">' + n.html + "</div>" : "";
+  }
 
   // ---------- cart ----------
   var KEY = "shop_cart_v1";
@@ -157,9 +176,9 @@
         '<div class="card-price">' + won(p.price) + (hasAdd ? " <small>부터</small>" : "") + "</div></div></a>";
     }).join("");
     app.innerHTML =
-      '<section class="hero"><img class="hero-logo" src="Image/logo-full.png" alt="' + esc(CFG.shopName) + '" onerror="this.style.display=\'none\'">' +
-      "<h1>" + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D printed TESLA Accessories") + "</p></section>" +
-      '<div class="wrap">' + SEXY_NOTICE + '<div class="grid">' + cards + "</div></div>";
+      '<section class="hero"><img class="hero-logo" src="images/logo-full.png?v=8" alt="' + esc(CFG.shopName) + '" onerror="this.style.display=\'none\'">' +
+      "<h1>" + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D 프린터로 제작하는 심플한 센터콘솔 시프터") + "</p></section>" +
+      '<div class="wrap"><div class="grid">' + cards + "</div></div>";
   }
 
   function renderProduct(id) {
@@ -194,7 +213,7 @@
       '<div class="gallery"><div class="main-img" id="mainImg">' + imgBlock(p, 0) + "</div>" + thumbs + "</div>" +
       '<div class="info"><h1>' + esc(p.name) + '</h1><p class="sub">' + esc(p.subtitle || "") + "</p>" +
       '<div class="price-now" id="priceNow"></div>' +
-      '<p class="desc">' + esc(p.description || "") + "</p>" + det + SEXY_NOTICE + opts +
+      '<p class="desc">' + esc(p.description || "") + "</p>" + det + noticeBox(p) + opts +
       '<div class="qty-row"><div class="opt-name" style="margin:0">수량</div><div class="qty">' +
       '<button type="button" id="qMinus" aria-label="수량 감소">−</button><span id="qVal">1</span>' +
       '<button type="button" id="qPlus" aria-label="수량 증가">+</button></div></div>' +
@@ -285,13 +304,23 @@
       return '<div class="sum-row" style="font-size:14px"><span>' + esc(l.p.name) + " × " + l.c.qty + "</span><span>" + won(l.sub) + "</span></div>";
     }).join("");
 
+    // 장바구니에 안내 문구가 있는 상품이 있을 때만 주문서에 표시
+    var notes = [];
+    ls.forEach(function (l) {
+      var n = noticeOf(l.p);
+      if (n && notes.indexOf(n.text) === -1) notes.push(n.text);
+    });
+    var noteHtml = notes.map(function (t) {
+      return '<p class="muted" style="font-size:12px;margin:10px 0 0">※ ' + esc(t) + "</p>";
+    }).join("");
+
     app.innerHTML = '<div class="wrap"><a class="back" href="#/cart">← 장바구니</a><h1 class="page-title">주문서 작성</h1>' +
       '<form id="orderForm" novalidate class="form-grid"><div>' +
       field("name", "이름", "text", "받으시는 분 이름", true, "이름을 입력해주세요.") +
       field("phone", "연락처", "tel", "010-0000-0000", true, "연락처를 정확히 입력해주세요.") +
       field("address", "주소", "text", "도로명 주소 + 상세주소", true, "주소를 입력해주세요.") +
       field("nickname", "카페닉네임", "text", "카페에서 사용하는 닉네임", true, "카페닉네임을 입력해주세요.") +
-      '<div class="field"><label for="f_request">추가요청사항<span class="opt-tag">(선택)</span></label><textarea id="f_request" name="request" placeholder="추가 요청사항 (ex. 엣지색상 mix, 케이블구멍 삭제)"></textarea></div>' +
+      '<div class="field"><label for="f_request">추가요청사항<span class="opt-tag">(선택)</span></label><textarea id="f_request" name="request" placeholder="배송 시 요청사항 등 자유롭게 적어주세요."></textarea></div>' +
       '<div class="field consent" id="consentField"><label><input type="checkbox" id="f_consent"><span>개인정보 수집 및 이용에 동의합니다. <span class="req">(필수)</span></span></label>' +
       "<details><summary>자세히 보기</summary><ul><li>수집 항목: 이름, 연락처, 주소, 카페닉네임, 추가요청사항</li><li>이용 목적: 주문 확인, 제품 제작 및 배송, 문의 응대</li><li>보유 기간: 주문 처리 및 배송 완료 후 필요한 기간 동안 보관 후 파기</li><li>동의를 거부할 수 있으나, 거부 시 주문이 불가합니다.</li></ul></details>" +
       '<div class="err">개인정보 수집 및 이용에 동의해주세요.</div></div>' +
@@ -301,7 +330,7 @@
       '<div class="sum-row total"><span>총 결제금액</span><span>' + won(t.total) + "</span></div>" +
       '<div class="bank-box"><b>결제 방법: 계좌 입금</b><br>주문서 제출 후 입금 계좌를 안내해 드려요.</div>' +
       '<button type="submit" class="btn block" id="submitBtn" style="margin-top:16px">주문서 제출하기</button>' +
-      '<p class="muted" style="font-size:12px;margin:10px 0 0">※ 섹시버튼이 있는 차량에서만 사용 가능한 제품입니다.</p>' +
+      noteHtml +
       "</aside></div></form></div>";
 
     var form = document.getElementById("orderForm");
