@@ -157,7 +157,7 @@
         '<div class="card-price">' + won(p.price) + (hasAdd ? " <small>부터</small>" : "") + "</div></div></a>";
     }).join("");
     app.innerHTML =
-      '<section class="hero"><img class="hero-logo" src="image/logo-full.png" alt="' + esc(CFG.shopName) + '" onerror="this.style.display=\'none\'">' +
+      '<section class="hero"><img class="hero-logo" src="Image/logo-full.png" alt="' + esc(CFG.shopName) + '" onerror="this.style.display=\'none\'">' +
       "<h1>" + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D printed TESLA Accessories") + "</p></section>" +
       '<div class="wrap">' + SEXY_NOTICE + '<div class="grid">' + cards + "</div></div>";
   }
