@@ -102,7 +102,7 @@ window.PRODUCTS = [
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 25000,                        // 기본 가격 (원)
     images: ["Image/4holes_B.png","Image/4holes_W.png","Image/4holes_1.png","Image/4holes_2.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
-    description: "센터콘솔에 장착하는 편리한 시프터! \n LED 별도 장착시 화려 엠비언트 효과!! \n 시프터와 버튼 3구로 구성되어있습니다.\n 에어밸브캡 리무버 무료증정 이벤트중",
+    description: "센터콘솔에 장착하는 섹시버튼 홀더! \n LED 별도 장착시 화려 엠비언트 효과!! \n 버튼 4구로 구성되어있습니다.\n 에어밸브캡 리무버 할인 이벤트중",
     details: [
       "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
@@ -137,8 +137,8 @@ window.PRODUCTS = [
       {
         name: "할인이벤트 · 타이어 밸브캡 리무버",
         choices: [
-          { label: "구매", add: 3000, image: "Image/Cap_remover.png" },
-          { label: "미구매", add: 0 }
+               { label: "미구매", add: 0 },
+          { label: "구매", add: 3000, image: "Image/Cap_remover.png" }
         ]
       }
     ]
