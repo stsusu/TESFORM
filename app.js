@@ -177,7 +177,7 @@
     }).join("");
     app.innerHTML =
       '<section class="hero"><img class="hero-logo" src="Image/logo-full.png?v=8" alt="' + esc(CFG.shopName) + '" onerror="this.style.display=\'none\'">' +
-      "<h1>" + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D 프린터로 제작하는 심플한 센터콘솔 시프터") + "</p></section>" +
+      "<h1>" + esc(CFG.tagline) + "</h1><p>" + esc(CFG.heroText || "3D Printed TESLA Accessories") + "</p></section>" +
       '<div class="wrap"><div class="grid">' + cards + "</div></div>";
   }
 
