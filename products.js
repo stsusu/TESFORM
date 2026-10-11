@@ -14,8 +14,8 @@ window.PRODUCTS = [
     subtitle: " 하이랜드, 주니퍼 Y/YL 용",
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 31000,                        // 기본 가격 (원)
-    images: ["Image/2hole.png","Image/LED_sample.png","Image/sample_W.png"],   // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
-    description: "센터콘솔에 장착하는 편리한 시프터! \n LED 별도 장착시 화려 엠비언트 효과!! \n 시프터 와 버튼 2구로 구성되어있습니다.",
+    images: ["Image/2hole_free.png","Image/LED_sample.png","Image/sample_W.png","Image/free.png"],   // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
+    description: "센터콘솔에 장착하는 편리한 시프터! \n LED 별도 장착시 화려 엠비언트 효과!! \n 시프터와 버튼 2구로 구성되어있습니다. \n 에어밸브캡 리무버 무료증정 이벤트중",
     details: [
       "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
@@ -56,8 +56,8 @@ window.PRODUCTS = [
     subtitle: " 하이랜드, 주니퍼 Y/YL 용",
     badge: "NEW",                        // 뱃지 (필요 없으면 "")
     price: 32000,                        // 기본 가격 (원)
-    images: ["Image/3hole.png","Image/LED_sample.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
-    description: "센터콘솔에 장착하는 편리한 시프터! \n LED 별도 장착시 화려 엠비언트 효과!! \n 시프터 와 버튼 3구로 구성되어있습니다.",
+    images: ["Image/3hole_free.png","Image/LED_sample.png","Image/sample_W.png","Image/free.png"],                          // 예: ["images/basic-1.jpg", "images/basic-2.jpg"]
+    description: "센터콘솔에 장착하는 편리한 시프터! \n LED 별도 장착시 화려 엠비언트 효과!! \n 시프터와 버튼 3구로 구성되어있습니다.\n 에어밸브캡 리무버 무료증정 이벤트중",
     details: [
       "소재: PETG",
       "제작 방식: 주문 후 3D 프린팅 제작",
